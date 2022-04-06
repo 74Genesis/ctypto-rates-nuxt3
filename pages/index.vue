@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const someVar = ref(0);
+const someVar = useState("someVar", () => 0);
 const plusVar = () => {
   someVar.value++;
 };
@@ -7,7 +7,21 @@ const plusVar = () => {
 
 <template>
   <div class="index">
-    {{someVar}}
-    <button @click="plusVar()">plus</button>
+    <div class="index__login">Login form</div>
   </div>
 </template>
+
+<style lang="scss">
+.index {
+  &__login {
+    border: 2px solid black;
+    height: em(500px);
+    width: em(400px);
+    text-align: center;
+    padding: em(20px);
+    margin: auto;
+    margin-top: 200px;
+    border-radius: 6px;
+  }
+}
+</style>
