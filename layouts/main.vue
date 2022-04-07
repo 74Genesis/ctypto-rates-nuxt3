@@ -1,21 +1,21 @@
-<script setup>
-const name = "BaseName";
+<script setup lang="ts">
+const componentName = "BaseName";
 </script>
 
 <template>
   <div class="l-main">
     <div class="l-main__bg"></div>
-    <header class="l-main__header">
-      <BaseContainer> Some logo </BaseContainer>
-    </header>
+    <div class="l-main__over"></div>
+    <BaseIndexHeader class="l-main__header" />
     <slot />
   </div>
 </template>
 
 <style lang="scss">
 .l-main {
-  background: red;
+  background: $blue-dark;
   min-height: 100vh;
+  overflow: hidden;
 
   &__bg {
     position: absolute;
@@ -25,6 +25,16 @@ const name = "BaseName";
     background-size: cover;
     background-position: center;
     z-index: 10;
+    filter: blur(4px);
+  }
+
+  &__over {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: $blue-dark;
+    z-index: 20;
+    opacity: 0.7;
   }
 
   &__header {
@@ -32,7 +42,7 @@ const name = "BaseName";
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 20;
+    z-index: 50;
   }
 }
 </style>

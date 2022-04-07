@@ -7,9 +7,11 @@
     "lint": "eslint --ext .js,.ts --ignore-path .eslintignore ."
   },
   "dependencies": {
+    "@mdi/js": "^6.6.96",
     "vuetify": "^3.0.0-beta.0"
   },
   "devDependencies": {
+    "@mdi/font": "^6.6.96",
     "@nuxtjs/style-resources": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
@@ -27,6 +29,7 @@
     "sass-loader": "^10.2.1",
     "typescript": "^4.6.3",
     "vue-cli-plugin-vuetify": "~2.4.8",
-    "vuetify-loader": "^2.0.0-alpha.0"
+    "vuetify-loader": "^2.0.0-alpha.0",
+    "vite-svg-loader": "^3.2.0"
   }
 }

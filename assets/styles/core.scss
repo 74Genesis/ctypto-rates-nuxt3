@@ -1,4 +1,4 @@
-@use 'sass:math';
+//@import "@/assets/styles/resources/fonts";
 
 *,
 *:before,
@@ -7,6 +7,8 @@
 }
 
 html {
+  font-family: "exo", monospace;
+  font-weight: 400;
   box-sizing: border-box;
   width: 100vw !important;
   padding-right: 0 !important;

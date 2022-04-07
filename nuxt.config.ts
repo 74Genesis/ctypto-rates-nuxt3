@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from "nuxt3";
+import svgLoader from "vite-svg-loader";
 
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
@@ -13,6 +14,7 @@ export default defineNuxtConfig({
   },
   css: ["@/assets/styles/core.scss"],
   build: {
+    transpile: ["vuetify"],
     postcss: {
       postcssOptions: {
         plugins: {
@@ -28,11 +30,20 @@ export default defineNuxtConfig({
   },
   modules: [],
   vite: {
+    plugins: [
+      svgLoader({
+        defaultImport: "url",
+      }),
+    ],
+    define: {
+      "process.env.DEBUG": "false",
+    },
     css: {
       preprocessorOptions: {
         scss: {
           sourceMap: true,
-          additionalData: '@use "@/assets/styles/resources/global" as *;',
+          additionalData:
+            '@use "sass:math"; @import "@/assets/styles/resources/global";',
         },
       },
     },

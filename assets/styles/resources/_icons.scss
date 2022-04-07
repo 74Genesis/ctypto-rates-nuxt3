@@ -1,6 +1,6 @@
-@mixin crypto-icon {
-  background-image: url('~assets/icons/crypto_white.svg') !important;
-  background-size: 20px 20px !important;
+%crypto-icon {
+  background-image: url('~/assets/icons/crypto_white.svg') !important;
+  background-size: contain !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
