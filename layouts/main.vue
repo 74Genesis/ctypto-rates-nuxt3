@@ -7,7 +7,10 @@ const componentName = "BaseName";
     <div class="l-main__bg"></div>
     <div class="l-main__over"></div>
     <BaseIndexHeader class="l-main__header" />
-    <slot />
+
+    <div class="l-main__content">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -25,7 +28,7 @@ const componentName = "BaseName";
     background-size: cover;
     background-position: center;
     z-index: 10;
-    filter: blur(4px);
+    filter: blur(5px);
   }
 
   &__over {
@@ -34,7 +37,7 @@ const componentName = "BaseName";
     height: 100%;
     background: $blue-dark;
     z-index: 20;
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   &__header {
@@ -42,7 +45,12 @@ const componentName = "BaseName";
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 50;
+    z-index: 200;
+  }
+  &__content {
+    position: relative;
+    height: calc(100vh - #{em(60px)});
+    z-index: 100;
   }
 }
 </style>

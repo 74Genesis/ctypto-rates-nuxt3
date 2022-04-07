@@ -8,7 +8,7 @@ const isMenuActive = (name: string) => {
 <template>
   <menu class="main-menu">
     <li class="main-menu__item" :class="{ is_active: isMenuActive('index') }">
-      <NuxtLink to="/index">
+      <NuxtLink to="/">
         <span class="main-menu__label">Login</span>
       </NuxtLink>
     </li>
