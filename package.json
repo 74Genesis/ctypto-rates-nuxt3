@@ -7,8 +7,10 @@
     "lint": "eslint --ext .js,.ts --ignore-path .eslintignore ."
   },
   "dependencies": {
+    "@heroicons/vue": "^1.0.6",
     "@mdi/js": "^6.6.96",
-    "vuetify": "^3.0.0-beta.0"
+    "h3": "^0.7.2",
+    "mongodb": "^4.5.0"
   },
   "devDependencies": {
     "@mdi/font": "^6.6.96",
@@ -16,6 +18,7 @@
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
     "@vue/eslint-config-standard": "^6.1.0",
+    "autoprefixer": "^10.4.4",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^3.2.0",
@@ -27,9 +30,8 @@
     "postcss-preset-env": "^7.4.3",
     "sass": "^1.49.11",
     "sass-loader": "^10.2.1",
+    "tailwindcss": "^3.0.23",
     "typescript": "^4.6.3",
-    "vue-cli-plugin-vuetify": "~2.4.8",
-    "vuetify-loader": "^2.0.0-alpha.0",
     "vite-svg-loader": "^3.2.0"
   }
 }

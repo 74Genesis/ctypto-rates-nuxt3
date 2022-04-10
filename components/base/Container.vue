@@ -8,10 +8,10 @@
 
 <style lang="scss">
 .container {
-  max-width: em($container-width + 50);
+  //max-width: em($container-width + 50);
   position: relative;
   display: block;
   margin: auto;
-  padding: 0 em(25px);
+  //padding: 0 em(25px);
 }
 </style>

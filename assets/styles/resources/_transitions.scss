@@ -1,0 +1,25 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
+.switch-left-enter-active,
+.switch-left-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.switch-left-enter-from {
+  opacity: 0.2;
+  transform: translateX(30px);
+}
+
+.switch-left-leave-to {
+  opacity: 0.2;
+  transform: translateX(-30px);
+}

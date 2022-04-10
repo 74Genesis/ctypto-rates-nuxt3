@@ -1,10 +1,7 @@
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
+@import "tailwind";
+@import "reset";
 
-html {
+html, body {
   font-family: "exo", monospace;
   font-weight: 400;
   box-sizing: border-box;
@@ -12,13 +9,19 @@ html {
   padding-right: 0 !important;
   font-size: math.div(18, 1200) * 100vw;
 
-  @media (min-width: 1200px) {
+}
+@media (min-width: 1200px) {
+  html, body {
     font-size: $font-size;
   }
-  @media (max-width: 720px) {
+}
+@media (max-width: 720px) {
+  html, body {
     font-size: math.div(18, 720) * 100vw;
   }
-  @media (max-width: 360px) {
+}
+@media (max-width: 360px) {
+  html, body {
     font-size: math.div(18, 360) * 100vw;
   }
 }
@@ -37,24 +40,32 @@ body {
 h1 {
   font-weight: 500;
   font-size: em(40px);
+  margin-bottom: em(15px);
 }
 
 h2 {
   font-weight: 500;
   font-size: em(30px);
+  margin-bottom: em(15px);
 }
 
 h3 {
   font-weight: 500;
   font-size: em(30px);
+  margin-bottom: em(15px);
 }
 
 h4 {
   font-weight: 500;
   font-size: em(30px);
+  margin-bottom: em(15px);
 }
 
 h5 {
   font-weight: 500;
   font-size: em(30px);
+}
+
+p {
+  margin-bottom: em(10px);
 }

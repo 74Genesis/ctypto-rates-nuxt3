@@ -12,12 +12,12 @@ export default defineNuxtConfig({
       // },
     ],
   },
-  css: ["@/assets/styles/core.scss"],
+  css: ["@/assets/styles/core/core.scss"],
   build: {
-    transpile: ["vuetify"],
     postcss: {
       postcssOptions: {
         plugins: {
+          tailwindcss: {},
           autoprefixer: {},
           "postcss-nested": {},
           "postcss-preset-env": {},

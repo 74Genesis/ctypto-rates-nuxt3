@@ -10,7 +10,7 @@ const plusVar = () => {
     <div class="p-index__wrapper">
       <div class="p-index__title"><h1>Wow! Nice to meet you!</h1></div>
       <div class="p-index__login">
-        <BaseAuthTabs class="p-index__auth" />
+        <MainAuthTabs class="p-index__auth" />
       </div>
       <div class="p-index__description">
         <h3>Where am I ?</h3>
@@ -61,12 +61,13 @@ const plusVar = () => {
   }
   &__description {
     flex-basis: 40%;
-    opacity: 0.6;
     line-height: 1.35;
     h3 {
       margin-top: 0;
+      opacity: 1;
     }
     p {
+      opacity: 0.7;
       margin-top: 0;
       font-size: em(16px);
     }
