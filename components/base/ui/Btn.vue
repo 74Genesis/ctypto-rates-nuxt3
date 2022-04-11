@@ -1,19 +1,47 @@
 <script setup lang="ts">
-defineProps<{
+interface Props {
   title?: string;
-}>();
+  isLoading?: boolean;
+  prevIcon?: string;
+  postIcon?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  title: "",
+  isLoading: false,
+  prevIcon: "",
+  postIcon: "",
+});
 </script>
 
 <template>
   <div
-    class="btn bg-blue-700 hover:bg-blue-500 block px-5 pt-3 pb-3.5 rounded-lg text-center"
+    class="btn bg-blue-700 hover:bg-blue-500 block rounded-lg text-center flex items-center justify-center px-5"
   >
-    {{ title }}
+    <component
+      :is="prevIcon"
+      v-if="prevIcon"
+      class="btn__prev-icon h-5 w-5 mr-3"
+    />
+    <span v-if="props.isLoading" class="btn__loading"></span>
+    <span v-else>{{ title }}</span>
+    <component
+      :is="postIcon"
+      v-if="postIcon"
+      class="btn__prev-icon h-5 w-5 ml-3"
+    />
   </div>
 </template>
 
 <style lang="scss">
 .btn {
   cursor: pointer;
+  height: em($input-height);
+  &__loading {
+    @extend %load-w-icon;
+    display: block;
+    height: em(30px);
+    width: em(30px);
+  }
 }
 </style>

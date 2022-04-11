@@ -4,3 +4,17 @@
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
+
+%load-w-icon {
+  background-image: url('~/assets/icons/loading_white.svg') !important;
+  background-size: 250%;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+%load-b-icon {
+  background-image: url('~/assets/icons/loading_black.svg') !important;
+  background-size: 250%;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}

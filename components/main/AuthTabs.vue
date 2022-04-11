@@ -40,9 +40,11 @@ const tabColor = ref("#ffffff1a");
     <div class="auth-tabs__windows">
       <Transition mode="out-in" name="switch-left">
         <div v-if="tab === 1" class="auth-tabs__window">
-          <FormLogin />
+          <FormLogin class="auth-tabs__login" />
         </div>
-        <div v-else-if="tab === 2" class="auth-tabs__window">SIGNUP</div>
+        <div v-else-if="tab === 2" class="auth-tabs__window">
+          <FormSignup class="auth-tabs__signup" />
+        </div>
         <div v-else-if="tab === 3" class="auth-tabs__window">WITHOUT</div>
       </Transition>
     </div>
