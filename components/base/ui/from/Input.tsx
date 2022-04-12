@@ -31,8 +31,16 @@ export default defineComponent({
       validator: (value: string) => ["light", "dark"].includes(value),
     },
     isError: {
-      type: String,
-      default: "light",
+      type: Boolean,
+      default: false,
+    },
+    isWarn: {
+      type: Boolean,
+      default: false,
+    },
+    isDisable: {
+      type: Boolean,
+      default: false,
     },
     errorMsg: {
       type: String,
@@ -60,6 +68,9 @@ export default defineComponent({
   computed: {
     isLabel() {
       return !!this.label;
+    },
+    isLight() {
+      return this.mode === "light";
     },
   },
   methods: {
@@ -90,10 +101,20 @@ export default defineComponent({
     inputWrap() {
       const style: Styles = {
         height: "2.6666666667em",
+        "background-color": "#ffffff14",
       };
-      if (this.mode === "light") {
-        style["background-color"] = this.isError ? "#ffffff14" : "#ffffff14";
+      if (this.isError) {
+        style["background-color"] = "#ff0d0059";
+        style["color"] = "#ffebeb";
       }
+      if (this.isWarn) {
+        style["background-color"] = "#ff9c0040";
+        style["color"] = "#fffceb";
+      }
+      if (this.isDisable) {
+        style["opacity"] = "60%";
+      }
+
       return (
         <div
           class="form-input__wrap rounded-lg flex items-center px-5"
@@ -114,10 +135,12 @@ export default defineComponent({
           placeholder={this.placeholder}
           value={this.modelValue}
           onInput={this.onInput}
+          disabled={this.isDisable}
         />
       );
     },
     onInput(event: any) {
+      if (this.isDisable) return;
       this.$emit("update:modelValue", event.target.value);
     },
     errorBlock() {

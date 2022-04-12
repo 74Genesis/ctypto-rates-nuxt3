@@ -1,28 +1,35 @@
 <script setup lang="ts">
 import Input from "~/components/base/ui/from/Input";
-import InputPwd from "~/components/base/ui/from/InputPwd";
 import UserIcon from "@heroicons/vue/outline/UserIcon";
 import LockClosedIcon from "@heroicons/vue/outline/LockClosedIcon";
 
-const name = "input";
+const name = ref("public@user.net");
+const pass = ref("j4Fdsf323Gjf");
 </script>
 
 <template>
-  <div class="form-login">
+  <div class="hacker-login">
     <Input
       id="login-name"
+      v-model="name"
       label="Username"
       placeholder="SuperCryptoNinja"
-      class="mb-4"
+      class="hacker-login__input mb-4"
       :post-icon="UserIcon"
+      :is-warn="true"
+      :is-disable="true"
     />
-    <InputPwd
+    <Input
       id="login-pass"
+      v-model="pass"
       label="Password"
       placeholder="**********"
-      class="mb-6"
+      class="hacker-login__input mb-2"
       :post-icon="LockClosedIcon"
+      :is-warn="true"
+      :is-disable="true"
     />
+    <p class="hacker-login__label mb-5">Use public account.</p>
     <BaseUiBtn title="Login" />
   </div>
 </template>

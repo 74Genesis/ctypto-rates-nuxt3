@@ -4,6 +4,7 @@ interface Props {
   isLoading?: boolean;
   prevIcon?: string;
   postIcon?: string;
+  theme: "blue" | "white";
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -11,12 +12,25 @@ const props = withDefaults(defineProps<Props>(), {
   isLoading: false,
   prevIcon: "",
   postIcon: "",
+  theme: "blue",
 });
+
+const themeClass = computed(() => {
+  if (props.theme === "white") {
+    return "is_white";
+  }
+  if (props.theme === "blue") {
+    return "is_blue";
+  }
+});
+
+console.log(props.theme, themeClass);
 </script>
 
 <template>
   <div
     class="btn bg-blue-700 hover:bg-blue-500 block rounded-lg text-center flex items-center justify-center px-5"
+    :class="themeClass"
   >
     <component
       :is="prevIcon"
@@ -42,6 +56,16 @@ const props = withDefaults(defineProps<Props>(), {
     display: block;
     height: em(30px);
     width: em(30px);
+  }
+  &:hover {
+    opacity: 90%;
+  }
+  &.is_white {
+    background: white;
+    color: #011a24;
+  }
+  &.is_blue {
+    background: $blue;
   }
 }
 </style>
