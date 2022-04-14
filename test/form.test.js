@@ -1,43 +1,44 @@
-import { describe, test } from "vitest";
+import { describe, test, expect } from "vitest";
 import { setup, $fetch } from "@nuxt/test-utils-edge";
+import { ref } from "vue";
 
-import Form from "~/logic/Form/Form";
-import Field from "~/logic/Form/Field";
-import NumberValidator from "~/logic/Form/validator/NumberValidator";
-import RequireValidator from "~/logic/Form/validator/RequireValidator";
+import Form from "../logic/Form/Form";
+import Field from "../logic/Form/Field";
+import NumberValidator from "../logic/Form/validator/NumberValidator";
+import RequireValidator from "../logic/Form/validator/RequireValidator";
 
-const increment = function (a, b = 0) {
-  return a + b;
-};
-
-describe("My test", async () => {
-  await setup({
-    // test context options
-  });
-
+describe("My test", () => {
   const form = new Form({
     url: "http://localhost:3000/test",
     method: "POST",
     fields: [
       new Field({
         name: "username",
-        value: "",
+        ref: ref(""),
         validators: [new RequireValidator()],
       }),
       new Field({
         name: "age",
-        value: "",
+        ref: ref(""),
         validators: [new RequireValidator(), new NumberValidator()],
       }),
     ],
   });
 
-  form.isValid();
-  const errors = form.getErrors();
+  test("Form validation", () => {
+    expect(form.getErrors().length).toBe(3);
+    expect(form.isValid()).toBe(false);
+    expect(form.getField("123")).toBe(undefined);
 
-  // form.submit();
+    const age = form.getField("age");
+    const user = form.getField("username");
 
-  test("increments the current number by 1", () => {
-    expect(errors.length).toBe(2);
+    age.value = "three";
+    expect(age.getErrors().length).toBe(1);
+
+    age.value = "20";
+    user.value = "Alex";
+    expect(form.getErrors().length).toBe(0);
+    expect(form.isValid()).toBe(true);
   });
 });

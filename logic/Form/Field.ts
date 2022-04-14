@@ -1,16 +1,21 @@
 import IValidator from "~/logic/Form/validator/IValidator";
+import { Ref } from "vue";
 
 export default class Field {
   public name: string;
-  public value = "";
+  public ref: Ref;
   public validators: IValidator[];
+
+  constructor(data: Partial<Field>) {
+    Object.assign(this, data);
+  }
 
   /**
    * returns true if all validators passes successfully
    */
-  isValid() {
-    for (v in this.validators) {
-      if (!v.isValid(this.value)) return false;
+  public isValid(): boolean {
+    for (let i = 0; i < this.validators.length; i++) {
+      if (!this.validators[i].isValid(this.value)) return false;
     }
     return true;
   }
@@ -20,9 +25,17 @@ export default class Field {
    */
   getErrors() {
     const errors: string[] = [];
-    for (const v in this.validators) {
-      if (!v.isValid(this.value)) errors.push(v.message);
+    for (let i = 0; i < this.validators.length; i++) {
+      if (!this.validators[i].isValid(this.ref.value))
+        errors.push(this.validators[i].message);
     }
     return errors;
+  }
+
+  get value() {
+    return this.ref.value;
+  }
+  set value(val: string) {
+    this.ref.value = val;
   }
 }

@@ -1,45 +1,77 @@
 import Field from "~/logic/Form/Field";
+import { $fetch } from "ohmyfetch";
 
 /**
- * Form class
+ * Form class, can make any http requests, and check validation
  */
-export default class From {
+export default class Form {
   public url: string;
   public isError = false;
   public response = {};
   public method = "GET";
+  public headers = {};
   public fields: Field[] = [];
 
-  constructor(data: Partial<From>) {
+  constructor(data: Partial<Form>) {
     Object.assign(this, data);
   }
 
   /**
    * returns true if all fields are valid
    */
-  isValid() {
-    for (const field in this.fields) {
-      if (!field.isValid()) return false;
+  public isValid() {
+    for (let i = 0; i < this.fields.length; i++) {
+      if (!this.fields[i].isValid()) {
+        return false;
+      }
     }
-    return false;
+    return true;
   }
 
   /**
-   * get all fields errors
+   * get all errors of validators which is not passed
    */
   getErrors() {
-    let errors = [];
-    for (const field in this.fields) {
-      errors = [...errors, ...field.getErrors()];
+    let errors: string[] = [];
+    for (let i = 0; i < this.fields.length; i++) {
+      errors = [...errors, ...this.fields[i].getErrors()];
     }
     return errors;
   }
 
   /**
+   * get field by name
+   * @param name - field name
+   */
+  getField(name: string): Field | undefined {
+    const field = this.fields.find((field) => field.name === name);
+    return field || undefined;
+  }
+
+  beforeSubmit() {
+    return;
+  }
+
+  /**
    * Submit form
    */
-  submit() {
+  async submit() {
     if (!this.isValid()) return false;
-    console.log("SUBMIT");
+    this.beforeSubmit();
+    const r = await $fetch(this.url, {
+      method: this.method,
+      headers: {
+        "Content-Type": "application/json",
+        ...this.headers,
+      },
+      body: { some: "json" },
+      baseURL: "/",
+    });
+    console.log("SUBMIT", r);
+    this.afterSubmit();
+  }
+
+  afterSubmit() {
+    return;
   }
 }
