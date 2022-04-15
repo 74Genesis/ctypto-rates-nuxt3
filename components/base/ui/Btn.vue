@@ -4,7 +4,6 @@ interface Props {
   isLoading?: boolean;
   prevIcon?: string;
   postIcon?: string;
-  theme: "blue" | "white";
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -23,8 +22,6 @@ const themeClass = computed(() => {
     return "is_blue";
   }
 });
-
-console.log(props.theme, themeClass);
 </script>
 
 <template>

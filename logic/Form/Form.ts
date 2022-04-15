@@ -1,5 +1,6 @@
 import Field from "~/logic/Form/Field";
 import { $fetch } from "ohmyfetch";
+import { ref } from "vue";
 
 /**
  * Form class, can make any http requests, and check validation
@@ -11,6 +12,7 @@ export default class Form {
   public method = "GET";
   public headers = {};
   public fields: Field[] = [];
+  private _loading = ref(false);
 
   constructor(data: Partial<Form>) {
     Object.assign(this, data);
@@ -48,6 +50,10 @@ export default class Form {
     return field || undefined;
   }
 
+  get loading() {
+    return this._loading.value;
+  }
+
   beforeSubmit() {
     return;
   }
@@ -58,16 +64,28 @@ export default class Form {
   async submit() {
     if (!this.isValid()) return false;
     this.beforeSubmit();
-    const r = await $fetch(this.url, {
-      method: this.method,
-      headers: {
-        "Content-Type": "application/json",
-        ...this.headers,
-      },
-      body: { some: "json" },
-      baseURL: "/",
-    });
-    console.log("SUBMIT", r);
+    this._loading.value = true;
+    try {
+      const config = useRuntimeConfig();
+      console.log(config);
+      console.log(config.baseUrl);
+      console.log(config.baseUrl);
+      console.log(config.baseUrl);
+      const r = await $fetch(this.url, {
+        method: this.method,
+        headers: {
+          "Content-Type": "application/json",
+          ...this.headers,
+        },
+        body: { some: "json" },
+        baseURL: config.apiUrl,
+      });
+      console.log("-------", r);
+    } catch (e) {
+      console.log(e);
+    }
+
+    this._loading.value = false;
     this.afterSubmit();
   }
 

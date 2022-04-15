@@ -5,3 +5,5 @@ nuxt.d.ts
 .output
 .env
 .idea
+env/*
+!env/base.env

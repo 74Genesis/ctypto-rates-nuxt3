@@ -11,7 +11,7 @@ const checkJwt = auth({
   issuerBaseURL: `https://dev-r-y-lotj.us.auth0.com/`,
 });
 
-app.get("/authentication", (req, res) => {
+app.post("/api/authentication", (req, res) => {
   return res.json({
     auth: true,
   });
