@@ -7,30 +7,42 @@ import { ref } from "vue";
 import Form from "~/logic/Form/Form";
 import Field from "~/logic/Form/Field";
 import RequireValidator from "~/logic/Form/validator/RequireValidator";
+import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
+import EmailValidator from "~/logic/Form/validator/EmailValidator";
 
 const isPassInteract = ref(true);
 const passInput = ref(null);
 const formError = ref("");
 
 const config = useRuntimeConfig();
-const test = ref(config.apiUrl);
+
+const emit = defineEmits(["onSuccess"]);
 
 const name = new Field({
-  name: "username",
+  name: "email",
   ref: ref(""),
-  validators: [new RequireValidator("username")],
+  validators: [new RequireValidator("email"), new EmailValidator("email")],
 });
 
 const pass = new Field({
   name: "password",
   ref: ref(generatePassword()),
-  validators: [new RequireValidator("password")],
+  validators: [
+    new RequireValidator("password"),
+    new PasswordValidator("password"),
+  ],
 });
 
 const form = new Form({
-  url: "/authentication",
+  url: "/signup",
   method: "POST",
   fields: [name, pass],
+  onError: (data) => {
+    formError.value = data?.error;
+  },
+  onSuccess: (data) => {
+    emit("onSuccess");
+  },
 });
 
 /**
@@ -77,12 +89,11 @@ function submit() {
 
 <template>
   <div class="form-signup">
-    tess: {{ test }}
     <Input
       id="login-name"
       v-model="name.value"
-      label="Username"
-      placeholder="SuperCryptoNinja"
+      label="Email address"
+      placeholder="crypto@ninja.com"
       class="form-signup__input mb-4"
       :post-icon="UserIcon"
     />
@@ -102,11 +113,10 @@ function submit() {
     <p class="form-signup__input mb-6">
       We've created a password for you. Cool, isn't it ?
     </p>
-    <p class="form-signup__error mb-5">{{ formError }}</p>
+    <p class="form-signup__error mb-5 text-red-600">{{ formError }}</p>
     <BaseUiBtn title="Sign up" :is-loading="form.loading" @click="submit()" />
   </div>
 </template>
-
 <style lang="scss">
 .form-signup {
 }

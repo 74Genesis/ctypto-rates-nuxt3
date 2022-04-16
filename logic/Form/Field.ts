@@ -5,6 +5,7 @@ export default class Field {
   public name: string;
   public ref: Ref;
   public validators: IValidator[];
+  public readonly = false;
 
   constructor(data: Partial<Field>) {
     Object.assign(this, data);
@@ -36,6 +37,7 @@ export default class Field {
     return this.ref.value;
   }
   set value(val: string) {
+    if (this.readonly) return;
     this.ref.value = val;
   }
 }
