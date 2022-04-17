@@ -10,8 +10,8 @@ import RequireValidator from "~/logic/Form/validator/RequireValidator";
 import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
 import EmailValidator from "~/logic/Form/validator/EmailValidator";
 
+const passInput = ref(null); // Input Element
 const isPassInteract = ref(true);
-const passInput = ref(null);
 const formError = ref("");
 
 const config = useRuntimeConfig();

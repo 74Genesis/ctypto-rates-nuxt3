@@ -1,27 +1,30 @@
 import express from "express";
-import { $fetch } from "ohmyfetch";
-import { auth } from "express-oauth2-jwt-bearer";
+import bcrypt from "bcrypt";
+import client from "~/server/db";
+import jwt from "jsonwebtoken";
+import { ObjectId } from "mongodb";
 import EmailValidator from "~/logic/Form/validator/EmailValidator";
 import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
+const emailValid = new EmailValidator("email");
+const passValid = new PasswordValidator("password");
 
 /*
  * Fast written simple auth api
  * */
+//TODO: Нормальное апи сделать
+
+interface User {
+  email: string;
+  password: string;
+  token: string;
+}
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const checkJwt = auth({
-  audience: "crypto-rates",
-  issuerBaseURL: process.env.AUTH0_DOMAIN,
-});
-
-app.post("/api/signup", async (req, res) => {
-  const emailValid = new EmailValidator("email");
-  const passValid = new PasswordValidator("password");
-
+app.post("/api/signup", async (req, res, next) => {
   // return error if fields not valid
   if (
     !emailValid.isValid(req.body?.email) ||
@@ -33,44 +36,94 @@ app.post("/api/signup", async (req, res) => {
     });
   }
 
-  try {
-    const r = await $fetch(process.env.AUTH0_DOMAIN + "/dbconnections/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: {
-        client_id: process.env.AUTH0_CLIENT_ID,
-        email: req.body?.email,
-        password: req.body?.password,
-        connection: "Username-Password-Authentication",
-      },
-    });
-    return res.json({
-      success: true,
-    });
-  } catch (e) {
+  await client.connect();
+  const db = await client.db("CryptoRates");
+
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(req.body?.password, salt);
+
+  const user = await db.collection("Users").insertOne({
+    name: req.body?.email,
+    password: hash,
+    token: "",
+  });
+
+  return res.json({
+    success: true,
+    data: user,
+  });
+});
+
+app.post("/api/login", async (req, res, next) => {
+  if (
+    !emailValid.isValid(req.body?.email) ||
+    !passValid.isValid(req.body?.password)
+  ) {
     return res.json({
       success: false,
-      error: "Sorry, user with this email already exists",
+      error: "form is not valid",
+    });
+  }
+
+  await client.connect();
+  const db = await client.db("CryptoRates");
+  const user = await db.collection("Users").findOne({ name: req.body?.email });
+
+  if (!user) {
+    return res.json({
+      success: false,
+      error: "Wrong username or password",
+    });
+  }
+
+  if (bcrypt.compareSync(req.body?.password, user.password)) {
+    // generate token
+    const token = jwt.sign({ id: String(user._id) }, process.env.SECRET);
+
+    console.log("token", token);
+
+    // save token to db
+    await db
+      .collection("Users")
+      .updateOne({ name: req.body?.email }, { $set: { token } });
+
+    res.json({
+      success: true,
+      user,
+      token,
+    });
+  } else {
+    return res.json({
+      success: false,
+      error: "Wrong username or password",
     });
   }
 });
 
+const auth = async (req, res, next) => {
+  const raw = String(req?.headers?.authorization.split(" ").pop());
+  const { id } = jwt.verify(raw, process.env.SECRET);
 
-// This route doesn't need authentication
-app.get("/api/login", function (req, res) {
-  res.json({
-    message:
-      "Hello from a public endpoint! You don't need to be authenticated to see this.",
-  });
-});
+  console.log("check token", req?.headers?.authorization.split(" ").pop(), id);
 
-// This route needs authentication
-app.get("/api/private", checkJwt, function (req, res) {
+  await client.connect();
+  const db = await client.db("CryptoRates");
+  req.user = await db.collection("Users").findOne({ _id: new ObjectId(id) });
+  next();
+};
+
+// get user info
+app.get("/api/user", auth, function (req, res) {
+  if (req.user) {
+    res.json({
+      success: true,
+      data: req.user,
+    });
+  }
+
   res.json({
-    message:
-      "Hello from a private endpoint! You need to be authenticated to see this.",
+    success: false,
+    message: "User not found",
   });
 });
 

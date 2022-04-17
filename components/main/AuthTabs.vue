@@ -50,7 +50,7 @@ const change = () => {
           <FormLogin class="auth-tabs__login" />
         </div>
         <div v-else-if="tab === 2" class="auth-tabs__window">
-          <FormSignup class="auth-tabs__signup" />
+          <FormSignup class="auth-tabs__signup" @on-success="tab = 1" />
         </div>
         <div v-else-if="tab === 3" class="auth-tabs__window">
           <FormHacker class="auth-tabs__hacker" />
