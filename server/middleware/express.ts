@@ -80,8 +80,6 @@ app.post("/api/login", async (req, res, next) => {
     // generate token
     const token = jwt.sign({ id: String(user._id) }, process.env.SECRET);
 
-    console.log("token", token);
-
     // save token to db
     await db
       .collection("Users")
@@ -103,8 +101,6 @@ app.post("/api/login", async (req, res, next) => {
 const auth = async (req, res, next) => {
   const raw = String(req?.headers?.authorization.split(" ").pop());
   const { id } = jwt.verify(raw, process.env.SECRET);
-
-  console.log("check token", req?.headers?.authorization.split(" ").pop(), id);
 
   await client.connect();
   const db = await client.db("CryptoRates");

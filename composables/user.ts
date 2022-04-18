@@ -1,6 +1,6 @@
-export const userData = () => useState("userData", () => null);
-export const useUserToken = useState("useUserToken", () => "");
+export const userData = useState("userData", () => null);
+export const userToken = useState("userToken", () => "");
 
-export function useUserSetToken(value: string) {
-  useUserToken.value = value;
+export function userSetToken(value: string) {
+  userToken.value = value;
 }

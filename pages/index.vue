@@ -8,13 +8,11 @@ const plusVar = () => {
 <template>
   <div class="p-index">
     <div class="p-index__wrapper">
-      <div class="p-index__title"><h1>Wow! Nice to meet you!</h1></div>
+      <div class="p-index__title"><h1>Nice to meet you!</h1></div>
       <div class="p-index__login">
         <MainAuthTabs class="p-index__auth" />
       </div>
       <div class="p-index__description">
-        <h3>Where am I ?</h3>
-        <p>Would you ask yourself probably.</p>
         <p>
           My name is Igor, and I worked with Nuxt\Vue 2 long time. This website
           is a small pet project to learn Vue 3, Nuxt 3 and other relative
