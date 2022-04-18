@@ -2,6 +2,8 @@ import Field from "~/logic/Form/Field";
 import { $fetch } from "ohmyfetch";
 import { ref } from "vue";
 
+// TODO: csrf
+
 /**
  * Form class, can make any http requests, and check validation
  */

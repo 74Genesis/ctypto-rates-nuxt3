@@ -6,11 +6,6 @@ import DesktopComputerIcon from "@heroicons/vue/outline/DesktopComputerIcon";
 const tab = useState("tab", () => 1);
 const tabColor = ref("#ffffff1a");
 
-let d = useD();
-
-const change = () => {
-  d = d + "f";
-};
 </script>
 
 <template>

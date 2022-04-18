@@ -54,6 +54,8 @@ function submit() {
 
 <template>
   <div class="form-login">
+    token: {{ token }}
+    <BaseUiBtn title="Set token" @click="token.value = `adfasjflsdf`" />
     <Input
       id="login-name"
       v-model="name.value"
