@@ -8,7 +8,7 @@
 
 <style lang="scss">
 .container {
-  //max-width: em($container-width + 50);
+  //max-width: em($container-width + 51);
   position: relative;
   display: block;
   margin: auto;
