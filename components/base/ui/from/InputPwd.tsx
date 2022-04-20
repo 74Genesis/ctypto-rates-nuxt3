@@ -1,6 +1,6 @@
 import Input from "./Input";
 import { h } from "vue";
-import EyeIcon from "@heroicons/vue/outline/EyeIcon";
+import EyeIcon from "@heroicons/vue/outline/EyeIcon.js";
 
 /**
  * The basic component of Input, can by extended.
