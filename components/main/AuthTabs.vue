@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import LoginIcon from "@heroicons/vue/outline/LoginIcon";
-import PencilAltIcon from "@heroicons/vue/outline/PencilAltIcon";
-import DesktopComputerIcon from "@heroicons/vue/outline/DesktopComputerIcon";
+import LoginIcon from "@heroicons/vue/outline/LoginIcon.js";
+import PencilAltIcon from "@heroicons/vue/outline/PencilAltIcon.js";
+import DesktopComputerIcon from "@heroicons/vue/outline/DesktopComputerIcon.js";
 
 const tab = useState("tab", () => 1);
 const tabColor = ref("#ffffff1a");

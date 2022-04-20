@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Input from "~/components/base/ui/from/Input";
-import UserIcon from "@heroicons/vue/outline/UserIcon";
-import LockClosedIcon from "@heroicons/vue/outline/LockClosedIcon";
+import UserIcon from "@heroicons/vue/outline/UserIcon.js";
+import LockClosedIcon from "@heroicons/vue/outline/LockClosedIcon.js";
 
 const name = ref("public@user.net");
 const pass = ref("j4Fdsf323Gjf");

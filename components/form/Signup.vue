@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Input from "~/components/base/ui/from/Input";
 import InputPassword from "~/components/base/ui/from/InputPwd";
-import UserIcon from "@heroicons/vue/outline/UserIcon";
-import LockClosedIcon from "@heroicons/vue/outline/LockClosedIcon";
+import UserIcon from "@heroicons/vue/outline/UserIcon.js";
+import LockClosedIcon from "@heroicons/vue/outline/LockClosedIcon.js";
 import { ref } from "vue";
 import Form from "~/logic/Form/Form";
 import Field from "~/logic/Form/Field";
