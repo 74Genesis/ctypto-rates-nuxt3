@@ -51,11 +51,11 @@ export default defineComponent({
       default: "",
     },
     prevIcon: {
-      type: [String, Function],
+      type: [Function, Object, String],
       default: "",
     },
     postIcon: {
-      type: [String, Function],
+      type: [Function, Object, String],
       default: "",
     },
   },
@@ -89,13 +89,9 @@ export default defineComponent({
       );
     },
     renderPrevIcon() {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       return h(this.prevIcon, { class: "w-5 h-5 mr-3.5 opacity-70" });
     },
     renderPostIcon() {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       return h(this.postIcon, { class: "w-5 h-5 ml-3.5 opacity-70" });
     },
     inputWrap() {
@@ -120,9 +116,9 @@ export default defineComponent({
           class="form-input__wrap rounded-lg flex items-center px-5"
           style={style}
         >
-          {this.renderPrevIcon()}
+          {this.prevIcon ? this.renderPrevIcon() : undefined}
           {this.input()}
-          {this.renderPostIcon()}
+          {this.postIcon ? this.renderPostIcon() : undefined}
         </div>
       );
     },
