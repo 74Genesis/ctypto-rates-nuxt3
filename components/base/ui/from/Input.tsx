@@ -89,10 +89,14 @@ export default defineComponent({
       );
     },
     renderPrevIcon() {
-      return h(this.prevIcon, { class: "w-5 h-5 mr-3.5 opacity-70" });
+      return this.prevIcon
+        ? h(this.prevIcon, { class: "w-5 h-5 mr-3.5 opacity-70" })
+        : undefined;
     },
     renderPostIcon() {
-      return h(this.postIcon, { class: "w-5 h-5 ml-3.5 opacity-70" });
+      return this.postIcon
+        ? h(this.postIcon, { class: "w-5 h-5 ml-3.5 opacity-70" })
+        : undefined;
     },
     inputWrap() {
       const style: Styles = {
@@ -116,9 +120,9 @@ export default defineComponent({
           class="form-input__wrap rounded-lg flex items-center px-5"
           style={style}
         >
-          {this.prevIcon ? this.renderPrevIcon() : undefined}
+          {this.renderPrevIcon()}
           {this.input()}
-          {this.postIcon ? this.renderPostIcon() : undefined}
+          {this.renderPostIcon()}
         </div>
       );
     },

@@ -20,8 +20,6 @@ export default defineComponent({
   },
   methods: {
     renderPostIcon() {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       return h(this.postIconInternal, {
         class: "w-5 h-5 ml-3.5 opacity-70",
         onClick: this.showClick,

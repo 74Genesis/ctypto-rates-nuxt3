@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const someVar = useState("someVar", () => 0);
-const plusVar = () => {
-  someVar.value++;
-};
+definePageMeta({
+  middleware: ["auth"],
+  layout: "main",
+});
 </script>
 
 <template>

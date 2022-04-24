@@ -2,10 +2,12 @@
 import LoginIcon from "@heroicons/vue/outline/LoginIcon.js";
 import PencilAltIcon from "@heroicons/vue/outline/PencilAltIcon.js";
 import DesktopComputerIcon from "@heroicons/vue/outline/DesktopComputerIcon.js";
+import { userStore } from "~/stores/user";
+
+const store = userStore();
 
 const tab = useState("tab", () => 1);
 const tabColor = ref("#ffffff1a");
-
 </script>
 
 <template>

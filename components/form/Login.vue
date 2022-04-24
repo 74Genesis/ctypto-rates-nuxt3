@@ -9,7 +9,11 @@ import RequireValidator from "~/logic/Form/validator/RequireValidator";
 import EmailValidator from "~/logic/Form/validator/EmailValidator";
 import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
 import Form from "~/logic/Form/Form";
+import { userStore } from "~/stores/user";
+import {useFetchAuth} from "~/composables/UseFetchAuth";
 
+const user = userStore();
+const cookieToken = useCookie("token");
 const formError = ref("");
 
 const name = new Field({
@@ -35,7 +39,9 @@ const form = new Form({
     formError.value = data?.error;
   },
   onSuccess: (data) => {
-    return;
+    if (data && data.success && data.token) {
+      user.login(data.token);
+    }
   },
 });
 
@@ -50,6 +56,12 @@ function submit() {
     form.submit();
   }
 }
+//
+// function request() {
+//   useFetchAuth("/api/user")
+//     .then((r) => console.log(r))
+//     .catch((e) => console.log(e));
+// }
 </script>
 
 <template>
@@ -71,7 +83,7 @@ function submit() {
       :post-icon="LockClosedIcon"
     />
     <p class="form-signup__error mb-5 text-red-600">{{ formError }}</p>
-    <BaseUiBtn title="Login" :is-loading="form.isLoading" @click="submit" />
+    <BaseUiBtn title="Login" :is-loading="form.loading" @click="submit" />
   </div>
 </template>
 

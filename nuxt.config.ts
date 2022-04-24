@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       // },
     ],
   },
+  buildModules: ["@pinia/nuxt"],
   css: ["@/assets/styles/core/core.scss"],
   build: {
     postcss: {
@@ -37,7 +38,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       svgLoader({
-        defaultImport: "url",
+        defaultImport: "raw",
       }),
     ],
     define: {

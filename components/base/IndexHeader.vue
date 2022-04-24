@@ -9,7 +9,6 @@ const comoponentName = "IndexHeader";
     <BaseContainer class="index-header__container">
       <div class="index-header__inner">
         <div class="index-header__logo">
-          <!--          <v-icon icon="mdi-home" />-->
           <span class="index-header__logo-icon"></span>
           <span class="index-header__logo-text">Crypto rates</span>
         </div>

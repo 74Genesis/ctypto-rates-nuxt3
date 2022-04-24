@@ -1,5 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const colors = require("tailwindcss/colors");
+delete colors["lightBlue"];
+delete colors["warmGray"];
+delete colors["coolGray"];
+delete colors["blueGray"];
+delete colors["trueGray"];
+
 module.exports = {
   mode: "jit",
   content: [
@@ -27,6 +33,20 @@ module.exports = {
         500: "#35bdf3",
         600: "#1eb4ef",
         700: "#0AB2F5",
+      },
+      black: {
+        400: "#5a5a5a",
+        500: "#3e3e3e",
+        600: "#222222",
+        700: "#161616",
+        900: "#111111",
+      },
+      gray: {
+        100: "#f8f8f8",
+        200: "#c8c8c8",
+        400: "#5a5a5a",
+        500: "#3e3e3e",
+        600: "#222222",
       },
     },
     extend: {},

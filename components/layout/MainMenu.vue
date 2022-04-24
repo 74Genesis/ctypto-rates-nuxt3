@@ -17,6 +17,14 @@ const isMenuActive = (name: string) => {
         <span class="main-menu__label">About</span>
       </NuxtLink>
     </li>
+    <li
+      class="main-menu__item"
+      :class="{ is_active: isMenuActive('dashboard') }"
+    >
+      <NuxtLink to="/dashboard">
+        <span class="main-menu__label">dashboard</span>
+      </NuxtLink>
+    </li>
   </menu>
 </template>
 

@@ -1,16 +1,24 @@
 <script setup lang="ts">
+import { userStore } from "~/stores/user";
+
+definePageMeta({
+  middleware: ["auth"],
+  layout: "dashboard",
+});
 const someVar = useState("someVar", () => 0);
 const plusVar = () => {
   someVar.value++;
 };
+const user = userStore();
+function logout() {
+  user.logout();
+}
 </script>
 
 <template>
   <div class="p-index">
     <div class="p-index__wrapper">
-      <div class="p-index__title"></div>
-      <div class="p-index__login"></div>
-      <div class="p-index__description"></div>
+      <BaseUiBtn title="LOGOUT" @click="logout" />
     </div>
   </div>
 </template>
