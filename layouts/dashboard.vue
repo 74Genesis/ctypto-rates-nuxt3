@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="l-dashboard__main flex-grow flex flex-col">
-      <div class="l-dashboard__header">
+      <div class="l-dashboard__main-header">
         <LayoutDashboardHeader />
       </div>
       <div class="l-dashboard__content grow">
@@ -34,6 +34,10 @@
     width: em(250px);
   }
   &__header {
+    height: $header-height;
+    border-bottom: 1px solid #1f1f1f;
+  }
+  &__main-header {
     height: $header-height;
   }
   &__logo {

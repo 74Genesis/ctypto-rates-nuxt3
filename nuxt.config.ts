@@ -38,7 +38,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       svgLoader({
-        defaultImport: "raw",
+        defaultImport: "url",
       }),
     ],
     define: {
