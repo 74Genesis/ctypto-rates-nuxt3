@@ -89,32 +89,40 @@ function submit() {
 
 <template>
   <div class="form-signup">
-    <Input
-      id="login-name"
-      v-model="name.value"
-      label="Email address"
-      placeholder="crypto@ninja.com"
-      class="form-signup__input mb-4"
-      :post-icon="UserIcon"
-    />
-    <div class="form-signup__pass flex items-end mb-2">
-      <InputPassword
-        id="form-signup-pass"
-        ref="passInput"
-        v-model="pass.value"
-        label="Password"
-        placeholder="**********"
-        class="form-signup__input grow"
-        :is-warn="isPassInteract"
-        @click="isPassInteract = false"
+    <form action="" @submit.prevent="submit">
+      <Input
+        id="login-name"
+        v-model="name.value"
+        label="Email address"
+        placeholder="crypto@ninja.com"
+        class="form-signup__input mb-4"
+        :post-icon="UserIcon"
       />
-      <BaseUiBtn title="Copy" class="ml-3" theme="white" @click="copyPass()" />
-    </div>
-    <p class="form-signup__input mb-6">
-      We've created a password for you. Cool, isn't it ?
-    </p>
-    <p class="form-signup__error mb-5 text-red-600">{{ formError }}</p>
-    <BaseUiBtn title="Sign up" :is-loading="form.loading" @click="submit()" />
+      <div class="form-signup__pass flex items-end mb-2">
+        <InputPassword
+          id="form-signup-pass"
+          ref="passInput"
+          v-model="pass.value"
+          label="Password"
+          placeholder="**********"
+          class="form-signup__input grow"
+          :is-warn="isPassInteract"
+          @click="isPassInteract = false"
+        />
+        <BaseUiBtn
+          title="Copy"
+          class="ml-3"
+          theme="white"
+          @click="copyPass()"
+        />
+      </div>
+      <p class="form-signup__input mb-6">
+        We've created a password for you. Cool, isn't it ?
+      </p>
+      <p class="form-signup__error mb-5 text-red-600">{{ formError }}</p>
+      <BaseUiBtn title="Sign up" :is-loading="form.loading" @click="submit()" />
+      <input v-show="0" type="submit" />
+    </form>
   </div>
 </template>
 <style lang="scss">

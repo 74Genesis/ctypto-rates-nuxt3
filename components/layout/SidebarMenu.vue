@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRoute } from "#app";
+import { userStore } from "~/stores/user";
 import {
   HomeIcon,
   LogoutIcon,
@@ -6,8 +8,14 @@ import {
   SwitchHorizontalIcon,
 } from "@heroicons/vue/outline";
 const route = useRoute();
+const user = userStore();
+
 function isMenuActive(name: string) {
-  return name === route.name;
+  return name === route?.name;
+}
+function logout() {
+  console.log("logout");
+  user.logout();
 }
 </script>
 
@@ -17,7 +25,7 @@ function isMenuActive(name: string) {
       class="side-menu__item mb-2"
       :class="{ is_active: isMenuActive('dashboard') }"
     >
-      <NuxtLink to="/" class="px-4 h-10 flex items-center block">
+      <NuxtLink to="/dashboard" class="px-4 h-10 flex items-center block">
         <HomeIcon class="h-4 w-4 mr-2" />
         <span class="side-menu__label">Home</span>
       </NuxtLink>
@@ -26,20 +34,24 @@ function isMenuActive(name: string) {
       class="side-menu__item mb-2 grow-0"
       :class="{ is_active: isMenuActive('about') }"
     >
-      <NuxtLink to="/about" class="px-4 h-10 flex items-center block">
+      <NuxtLink to="/fav" class="px-4 h-10 flex items-center block">
         <StarIcon class="h-4 w-4 mr-2" />
         <span class="side-menu__label">Favorites</span>
       </NuxtLink>
     </li>
     <li class="side-menu__item mb-2 grow-0" :class="{ is_active: 0 }">
-      <NuxtLink to="/dashboard" class="px-4 h-10 flex items-center block">
+      <NuxtLink to="/comparison" class="px-4 h-10 flex items-center block">
         <SwitchHorizontalIcon class="h-4 w-4 mr-2" />
         <span class="side-menu__label">Comparison</span>
       </NuxtLink>
     </li>
     <span class="grow"></span>
     <li class="side-menu__item mb-2 grow-0" :class="{ is_active: 0 }">
-      <NuxtLink to="/dashboard" class="px-4 h-10 flex items-center block">
+      <NuxtLink
+        to="#"
+        class="px-4 h-10 flex items-center block"
+        @click="logout"
+      >
         <LogoutIcon class="h-4 w-4 mr-2" />
         <span class="side-menu__label">Logout</span>
       </NuxtLink>

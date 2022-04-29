@@ -1,23 +1,16 @@
 import { userStore } from "~/stores/user";
-// import devalue from "@nuxt/devalue";
-// import { useNuxtApp } from "#app";
 
 export default defineNuxtRouteMiddleware((to, from) => {
   const token = useCookie("token");
   const user = userStore();
-  let userData;
-  const logout = function () {
-    user.setToken("");
-    user.setData("");
-    token.value = "";
-    return navigateTo("/");
-  };
-  user.setToken(token.value || "");
 
-  if (!["index", "about"].includes(to.name) && !token) {
+  if (to.name === "index" && token.value) return navigateTo("/dashboard");
+
+  if (!["index", "about"].includes(String(to.name)) && !token.value) {
+    console.log("logout middle");
     user.logout();
+    return navigateTo("/");
   }
-  if (to.name === "index") navigateTo("/dashboard");
 
   // if (process.server) {
   //   console.log("----- SERVER -------");

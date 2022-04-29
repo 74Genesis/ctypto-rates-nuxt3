@@ -10,7 +10,7 @@ import EmailValidator from "~/logic/Form/validator/EmailValidator";
 import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
 import Form from "~/logic/Form/Form";
 import { userStore } from "~/stores/user";
-import {useFetchAuth} from "~/composables/UseFetchAuth";
+import { useFetchAuth } from "~/composables/UseFetchAuth";
 
 const user = userStore();
 const cookieToken = useCookie("token");
@@ -56,34 +56,31 @@ function submit() {
     form.submit();
   }
 }
-//
-// function request() {
-//   useFetchAuth("/api/user")
-//     .then((r) => console.log(r))
-//     .catch((e) => console.log(e));
-// }
 </script>
 
 <template>
   <div class="form-login">
-    <Input
-      id="login-name"
-      v-model="name.value"
-      label="Username"
-      placeholder="SuperCryptoNinja"
-      class="mb-4"
-      :post-icon="UserIcon"
-    />
-    <InputPwd
-      id="login-pass"
-      v-model="pass.value"
-      label="Password"
-      placeholder="**********"
-      class="mb-2"
-      :post-icon="LockClosedIcon"
-    />
-    <p class="form-signup__error mb-5 text-red-600">{{ formError }}</p>
-    <BaseUiBtn title="Login" :is-loading="form.loading" @click="submit" />
+    <form action="" @submit.prevent="submit">
+      <Input
+        id="login-name"
+        v-model="name.value"
+        label="Username"
+        placeholder="SuperCryptoNinja"
+        class="mb-4"
+        :post-icon="UserIcon"
+      />
+      <InputPwd
+        id="login-pass"
+        v-model="pass.value"
+        label="Password"
+        placeholder="**********"
+        class="mb-2"
+        :post-icon="LockClosedIcon"
+      />
+      <p class="form-signup__error mb-5 text-red-600">{{ formError }}</p>
+      <input v-show="0" type="submit" />
+      <BaseUiBtn title="Login" :is-loading="form.loading" @click="submit" />
+    </form>
   </div>
 </template>
 

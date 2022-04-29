@@ -75,6 +75,7 @@ onMounted(() => {
   }
   &__chart-canvas {
     width: 100%;
+    height: 200px;
   }
   &__price {
     font-weight: 500;

@@ -8,17 +8,18 @@ export const userStore = defineStore("userStore", {
     setToken(value: string) {
       this.token = value;
     },
-    setData(value: Record | null) {
+    setData(value: any) {
       this.data = value;
     },
     logout() {
+      console.log("logout");
       this.setToken("");
       this.setData(null);
       const cookieToken = useCookie("token");
       cookieToken.value = "";
       navigateTo("/");
     },
-    login(token) {
+    login(token: string) {
       this.setToken(token);
       const cookieToken = useCookie("token");
       cookieToken.value = token;

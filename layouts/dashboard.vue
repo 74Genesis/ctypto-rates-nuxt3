@@ -3,8 +3,8 @@
 <template>
   <div class="l-dashboard w-full h-full flex items-stretch">
     <div class="l-dashboard__sidebar bg-black-900 text-white flex flex-col">
-      <div class="l-dashboard__header flex items-center mx-8">
-        <div class="l-dashboard__logo">
+      <div class="l-dashboard__header flex items-center mx-4">
+        <div class="l-dashboard__logo px-4">
           <span class="l-dashboard__logo-icon"></span>
           <span class="l-dashboard__logo-text">Crypto rates</span>
         </div>
@@ -31,7 +31,7 @@
   $header-height: em(60px);
 
   &__sidebar {
-    width: em(250px);
+    min-width: em(250px);
   }
   &__header {
     height: $header-height;
