@@ -4,10 +4,11 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const token = useCookie("token");
   const user = userStore();
 
+  if (token) user.setToken(token.value);
+
   if (to.name === "index" && token.value) return navigateTo("/dashboard");
 
   if (!["index", "about"].includes(String(to.name)) && !token.value) {
-    console.log("logout middle");
     user.logout();
     return navigateTo("/");
   }

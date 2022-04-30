@@ -30,6 +30,7 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+  // serverMiddleware: [{ path: "/ap", handler: "./server-api/server.ts" }],
   publicRuntimeConfig: {
     baseUrl: process.env.BASE_URL,
     apiUrl: process.env.API_URL,

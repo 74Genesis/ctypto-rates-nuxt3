@@ -12,7 +12,6 @@ export const userStore = defineStore("userStore", {
       this.data = value;
     },
     logout() {
-      console.log("logout");
       this.setToken("");
       this.setData(null);
       const cookieToken = useCookie("token");

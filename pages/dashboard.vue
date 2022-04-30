@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useDetailBtc } from "~/stores/detailbtc";
+let btc = useDetailBtc();
+btc.loadCurrency();
+
 definePageMeta({
   middleware: ["auth"],
   layout: "dashboard",

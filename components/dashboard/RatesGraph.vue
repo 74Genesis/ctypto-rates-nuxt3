@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import { Chart } from "frappe-charts";
 // import { Chart, LineController, CategoryScale, LinearScale, LineElement, PointElement } from "chart.js";
-// import {valueOrDefault} from 'chart.js/helpers/helpers.esm';
+// import {valueOrDefault} from 'chart.js/_api/_api.esm';
 
 // Chart.register(LineController, CategoryScale, LinearScale, LineElement, PointElement);
 
