@@ -15,7 +15,7 @@
     </div>
     <div class="l-dashboard__main flex-grow flex flex-col">
       <div class="l-dashboard__main-header">
-        <LayoutDashboardHeader />
+        <LayoutDashboardHeader class="l-dashboard__header-dashboard h-full" />
       </div>
       <div class="l-dashboard__content grow">
         <slot />
@@ -26,19 +26,21 @@
 
 <style lang="scss">
 .l-dashboard {
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
-  $header-height: em(60px);
 
   &__sidebar {
     min-width: em(250px);
   }
   &__header {
-    height: $header-height;
     border-bottom: 1px solid #1f1f1f;
+    height: em($main-header-height);
+  }
+  &__header-dashboard {
+    height: inherit;
   }
   &__main-header {
-    height: $header-height;
+    height: em($main-header-height);
   }
   &__logo {
     display: flex;
@@ -57,6 +59,7 @@
   }
   &__main {
     position: relative;
+    overflow-y: auto;
   }
   &__content {
     background-color: #f8f8f8;

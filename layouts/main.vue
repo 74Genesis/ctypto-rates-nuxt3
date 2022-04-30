@@ -17,7 +17,7 @@ const componentName = "BaseName";
 <style lang="scss">
 .l-main {
   background: $blue-dark;
-  min-height: 100vh;
+  //min-height: 100vh;
   overflow: hidden;
 
   &__bg {
@@ -48,9 +48,13 @@ const componentName = "BaseName";
     z-index: 200;
   }
   &__content {
-    position: relative;
-    height: calc(100vh - #{em(60px)});
+    position: fixed;
+    top: em($main-header-height);
+    left: 0;
+    height: calc(100vh - #{em($main-header-height)});
     z-index: 100;
+    overflow-y: auto;
+    width: 100%;
   }
 }
 </style>

@@ -94,7 +94,7 @@ const tabColor = ref("#ffffff1a");
     margin-top: em(15px);
   }
   &__window {
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
     width: 100%;

@@ -14,14 +14,20 @@ definePageMeta({
       </div>
       <div class="p-index__description">
         <p>
-          My name is Igor, and I worked with Nuxt\Vue 2 long time. This website
-          is a small pet project to learn Vue 3, Nuxt 3 and other relative
-          technologies.
+          It's a little pet project using vue3/nuxt3 and other relative
+          technologies. You can find more detailed description in About section
         </p>
         <p>
-          More detailed description about stack used here you can find in the
-          section <NuxtLink to="/about">About</NuxtLink>
+          You can find more detailed description in
+          <NuxtLink to="/about">About</NuxtLink> section
         </p>
+        <p>
+          If you want to order the development of your website, contact to me:
+        </p>
+        <ol>
+          <li>Email: itsdev74@gmail.com</li>
+          <li>Telegram: <a href="https://t.me/igorishere">@igorishere</a></li>
+        </ol>
       </div>
     </div>
   </div>
@@ -30,13 +36,11 @@ definePageMeta({
 <style lang="scss">
 .p-index {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   position: relative;
-  margin-top: em(60px);
   align-items: center;
   justify-content: center;
-  overflow-y: auto;
 
   &__wrapper {
     color: white;
@@ -45,13 +49,12 @@ definePageMeta({
     flex-wrap: wrap;
     align-items: flex-start;
     padding-bottom: em(40px);
-    margin-top: em(-30px);
   }
   &__title {
     flex-basis: 100%;
     h1 {
-      margin-top: 0;
-      margin-bottom: em(20px);
+      margin-top: em(20px);
+      margin-bottom: em(15px);
     }
   }
   &__login {
@@ -60,6 +63,8 @@ definePageMeta({
   &__description {
     flex-basis: 40%;
     line-height: 1.35;
+    font-size: em(16px);
+    margin-top: em(15px);
     h3 {
       margin-top: 0;
       opacity: 1;
@@ -67,8 +72,16 @@ definePageMeta({
     p {
       opacity: 0.7;
       margin-top: 0;
-      font-size: em(16px);
     }
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  &__auth {
+    min-height: em(400px);
   }
 }
 </style>
