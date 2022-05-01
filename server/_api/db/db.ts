@@ -6,7 +6,7 @@ const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@c
 try {
   client = new MongoClient(uri);
 } catch (e: any) {
-  console.log("CONNECTING ERROR", e);
+  console.log("CONNECTING ERROR", uri, e);
 }
 
 export default client;

@@ -6,7 +6,7 @@ import {
   LogoutIcon,
   StarIcon,
   SwitchHorizontalIcon,
-} from "@heroicons/vue/outline";
+} from "@heroicons/vue/outline/index.js";
 const route = useRoute();
 const user = userStore();
 
