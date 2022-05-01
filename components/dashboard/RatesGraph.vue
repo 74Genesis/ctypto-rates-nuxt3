@@ -1,21 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import {
-  Chart,
-  LineElement,
-  LineController,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-} from "chart.js";
-
-Chart.register(
-  LineElement,
-  LineController,
-  CategoryScale,
-  LinearScale,
-  PointElement
-);
 
 const chartEl = ref();
 
@@ -135,11 +119,13 @@ watch(
       };
 
       await nextTick();
-      let chartInstance = new Chart(chartEl.value, {
-        type: "line",
-        data: data,
-        options,
-      });
+      if (Chart) {
+        let chartInstance = new Chart(chartEl.value, {
+          type: "line",
+          data: data,
+          options,
+        });
+      }
     }
   }
 );

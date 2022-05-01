@@ -3,6 +3,7 @@
   font-style: normal;
   font-weight: 500;
   src: url("@/assets/fonts/nunito/Nunito-Bold.ttf") format("truetype");
+  font-display: fallback;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
   font-style: normal;
   font-weight: 400;
   src: url("@/assets/fonts/exo/Exo2-Regular.ttf") format("truetype");
+  font-display: fallback;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
   font-style: italic;
   font-weight: 400;
   src: url("@/assets/fonts/exo/Exo2-Italic.ttf") format("truetype");
+  font-display: fallback;
 }
 
 @font-face {
@@ -24,6 +27,7 @@
   font-style: normal;
   font-weight: 500;
   src: url("@/assets/fonts/exo/Exo2-SemiBold.ttf") format("truetype");
+  font-display: fallback;
 }
 
 @font-face {
@@ -31,4 +35,5 @@
   font-style: italic;
   font-weight: 500;
   src: url("@/assets/fonts/exo/Exo2-SemiBoldItalic.ttf") format("truetype");
+  font-display: fallback;
 }

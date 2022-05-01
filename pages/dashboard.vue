@@ -4,6 +4,13 @@ definePageMeta({
   layout: "dashboard",
 });
 
+useHead({
+  titleTemplate: "Dashboard - cryptorates",
+  // viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+});
+
+let isChartReady = ref(false);
+
 /* Bitcoin detail block */
 import { useDetailBtc } from "~/stores/detailbtc";
 let btc = useDetailBtc();
@@ -69,6 +76,16 @@ function getFormattedPrice(price: number) {
     maximumFractionDigits: 2,
   }).format(price);
 }
+
+onMounted(() => {
+  /* Load chart script global, because it doesn't work on heroku using import */
+  const script = document.createElement("script");
+  script.onload = () => {
+    isChartReady.value = true;
+  };
+  script.src = "/assets/scripts/chart.min.js";
+  document.body.append(script);
+});
 </script>
 
 <template>
@@ -77,7 +94,7 @@ function getFormattedPrice(price: number) {
       <DashboardRatesGraph
         class="p-dashboard__graph1"
         :history="btc.history"
-        :is-loading="isBtcLoaded"
+        :is-loading="isBtcLoaded && isChartReady.value"
         name="Bitcoin"
         icon="/assets/icons/currencies/BTC.svg"
         :price="btcPrice"
@@ -86,7 +103,7 @@ function getFormattedPrice(price: number) {
       <DashboardRatesGraph
         class="p-dashboard__graph2"
         :history="eth.history"
-        :is-loading="isEthLoaded"
+        :is-loading="isEthLoaded && isChartReady.value"
         name="Ethereum"
         icon="/assets/icons/currencies/ETH.svg"
         :price="ethPrice"
