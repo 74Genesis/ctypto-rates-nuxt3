@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-import client from "~/server/_api/db/db";
 import { ObjectId } from "mongodb";
+import loadDb from "~/server/_api/db/db";
 
 /*
  * User auth middleware
@@ -19,8 +19,7 @@ export default async (req: any, res: any, next: any) => {
     const payload = jwt.verify(token, process.env.SECRET || "");
 
     try {
-      await client.connect();
-      const db = await client.db("CryptoRates");
+      const db = await loadDb();
       if (typeof payload === "object") {
         user = await db
           .collection("Users")

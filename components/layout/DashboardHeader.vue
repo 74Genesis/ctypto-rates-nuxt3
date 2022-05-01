@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChevronDownIcon } from "@heroicons/vue/solid";
+import { ChevronDownIcon } from "@heroicons/vue/solid/index.js";
 import { StarIcon } from "@heroicons/vue/outline/index.js";
 const email = ref("public@user.net");
 const avaLetter = (email.value[0] || "").toUpperCase();

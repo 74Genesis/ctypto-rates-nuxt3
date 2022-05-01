@@ -1,8 +1,6 @@
-import express from "express";
 import bcrypt from "bcrypt";
-import client from "~/server/_api/db/db";
+import loadDb from "~/server/_api/db/db";
 import jwt from "jsonwebtoken";
-import { ObjectId } from "mongodb";
 import EmailValidator from "~/logic/Form/validator/EmailValidator";
 import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
 import authMiddleware from "~/server/_api/middleware/auth.js";
@@ -27,8 +25,7 @@ export function signup(app: any) {
       });
     }
 
-    await client.connect();
-    const db = await client.db("CryptoRates");
+    const db = await loadDb();
 
     // make password hash
     const salt = bcrypt.genSaltSync(10);
@@ -64,10 +61,8 @@ export function login(app: any) {
 
     // find an user by email and password
     let user;
-    let db;
+    const db = await loadDb();
     try {
-      await client.connect();
-      db = await client.db("CryptoRates");
       user = await db.collection("Users").findOne({ name: req.body?.email });
     } catch (e: any) {
       return res.json({
