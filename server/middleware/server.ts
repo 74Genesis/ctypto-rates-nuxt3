@@ -18,7 +18,8 @@ login(app);
 userInfo(app);
 
 // Currencies api
-import { currencyByName } from "../_api/_currency";
+import { currencyByName, currencyHistory } from "../_api/_currency";
 currencyByName(app);
+currencyHistory(app);
 
 export default app;

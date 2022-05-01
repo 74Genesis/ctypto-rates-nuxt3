@@ -47,5 +47,8 @@ export const useFetchAuth = async (
     // ...(csrf.value && { "x-xsrf-token": csrf.value }),
   };
 
-  return $fetch(url, { method: "GET", headers });
+  const options = Object.assign(opts || {}, { headers });
+
+  const config = useRuntimeConfig();
+  return $fetch(config.baseUrl + url, options);
 };

@@ -4,7 +4,7 @@ import { useFetchAuth } from "~/composables/UseFetchAuth";
 
 // TODO make dynamic store
 
-export const useDetailBtc = defineStore("useDetailBtc", {
+export const useDetailEth = defineStore("useDetailEth", {
   state: (): Record<string, any> => {
     return { currency: null, history: [] };
   },
@@ -16,7 +16,7 @@ export const useDetailBtc = defineStore("useDetailBtc", {
 
     // Get current currency info
     async loadCurrency() {
-      const r: any = await useFetchAuth("/api/currency/bitcoin");
+      const r: any = await useFetchAuth("/api/currency/ethereum");
       this.currency = r.data;
     },
 
@@ -27,7 +27,7 @@ export const useDetailBtc = defineStore("useDetailBtc", {
       date.setDate(date.getDate() - 30);
       const start = date.getTime();
 
-      const r: any = await useFetchAuth("/api/currency/bitcoin/history", {
+      const r: any = await useFetchAuth("/api/currency/ethereum/history", {
         params: { interval: "d1", start, end },
       });
 

@@ -1,4 +1,4 @@
-export default interface Currency {
+export default interface ICurrency {
   id: string;
   rank: string;
   symbol: string;

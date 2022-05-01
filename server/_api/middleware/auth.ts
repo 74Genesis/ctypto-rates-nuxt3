@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import client from "~/server/_api/db";
+import client from "~/server/_api/db/db";
 import { ObjectId } from "mongodb";
 
 /*
@@ -9,7 +9,7 @@ import { ObjectId } from "mongodb";
 export default async (req: any, res: any, next: any) => {
   const auth = req?.headers?.authorization;
   let token;
-  let errorMsg;
+  let user;
 
   if (auth) {
     token = String(auth).split(" ").pop();
@@ -17,7 +17,6 @@ export default async (req: any, res: any, next: any) => {
 
   if (token) {
     const payload = jwt.verify(token, process.env.SECRET || "");
-    let user;
 
     try {
       await client.connect();
@@ -29,15 +28,13 @@ export default async (req: any, res: any, next: any) => {
       }
     } catch (e: any) {
       console.log(e.message);
-      errorMsg = e.message;
-    }
-
-    if (user) {
-      req.user = user;
-      next();
     }
   }
 
-  req.errorMsg = errorMsg;
-  next();
+  if (user) {
+    req.user = user;
+    next();
+  } else {
+    res.status(403).json({ error: "You have no permissions" });
+  }
 };

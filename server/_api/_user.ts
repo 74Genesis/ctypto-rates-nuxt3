@@ -1,11 +1,11 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import client from "~/server/_api/db";
+import client from "~/server/_api/db/db";
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongodb";
 import EmailValidator from "~/logic/Form/validator/EmailValidator";
 import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
-import authMiddleware from "~/server/_api/auth.js";
+import authMiddleware from "~/server/_api/middleware/auth.js";
 const emailValid = new EmailValidator("email");
 const passValid = new PasswordValidator("password");
 
