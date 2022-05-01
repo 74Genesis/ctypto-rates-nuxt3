@@ -2,7 +2,6 @@
 import { ref, onMounted } from "vue";
 import {
   Chart,
-  ArcElement,
   LineElement,
   BarElement,
   PointElement,
@@ -29,7 +28,6 @@ import {
 } from "chart.js";
 
 Chart.register(
-  ArcElement,
   LineElement,
   BarElement,
   PointElement,
