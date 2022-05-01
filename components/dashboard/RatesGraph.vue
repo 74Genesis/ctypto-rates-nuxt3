@@ -1,57 +1,57 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import {
-  Chart,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip,
-  SubTitle,
-} from "chart.js";
+// import {
+//   Chart,
+//   LineElement,
+//   BarElement,
+//   PointElement,
+//   BarController,
+//   BubbleController,
+//   DoughnutController,
+//   LineController,
+//   PieController,
+//   PolarAreaController,
+//   RadarController,
+//   ScatterController,
+//   CategoryScale,
+//   LinearScale,
+//   LogarithmicScale,
+//   RadialLinearScale,
+//   TimeScale,
+//   TimeSeriesScale,
+//   Decimation,
+//   Filler,
+//   Legend,
+//   Title,
+//   Tooltip,
+//   SubTitle,
+// } from "chart.js";
 
-Chart.register(
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip,
-  SubTitle
-);
+// Chart.register(
+//   LineElement,
+//   BarElement,
+//   PointElement,
+//   BarController,
+//   BubbleController,
+//   DoughnutController,
+//   LineController,
+//   PieController,
+//   PolarAreaController,
+//   RadarController,
+//   ScatterController,
+//   CategoryScale,
+//   LinearScale,
+//   LogarithmicScale,
+//   RadialLinearScale,
+//   TimeScale,
+//   TimeSeriesScale,
+//   Decimation,
+//   Filler,
+//   Legend,
+//   Title,
+//   Tooltip,
+//   SubTitle
+// );
 
 const chartEl = ref();
 
@@ -171,11 +171,11 @@ watch(
       };
 
       await nextTick();
-      let chartInstance = new Chart(chartEl.value, {
-        type: "line",
-        data: data,
-        options,
-      });
+      // let chartInstance = new Chart(chartEl.value, {
+      //   type: "line",
+      //   data: data,
+      //   options,
+      // });
     }
   }
 );
