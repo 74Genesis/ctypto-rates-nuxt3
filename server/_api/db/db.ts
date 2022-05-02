@@ -2,7 +2,9 @@ import { MongoClient } from "mongodb";
 
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.0gezr.mongodb.net/?authMechanism=DEFAULT`;
 let client: any;
+console.log("before client create------------------------");
 try {
+  console.log("TRY CREATE CLIENT---------------------------------");
   client = new MongoClient(uri);
   console.log("CLIENT", client);
 } catch (e) {
