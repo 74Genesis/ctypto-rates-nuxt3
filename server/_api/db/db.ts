@@ -4,6 +4,7 @@ const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@c
 let client: any;
 try {
   client = new MongoClient(uri);
+  console.log("CLIENT", client);
 } catch (e) {
   console.log("CLIENT CREATE ERROR------------------", e);
 }
