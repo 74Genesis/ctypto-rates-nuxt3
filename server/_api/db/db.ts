@@ -1,21 +1,20 @@
 import { MongoClient } from "mongodb";
 
-const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.0gezr.mongodb.net/?authMechanism=DEFAULT`;
-let client: any;
-console.log("before client create------------------------");
-try {
-  console.log("TRY CREATE CLIENT---------------------------------");
-  client = new MongoClient(uri);
-  console.log("CLIENT", client);
-} catch (e) {
-  console.log("CLIENT CREATE ERROR------------------", e);
-}
-
 let db: any;
 
 const loadDB = async () => {
   if (db) {
     return db;
+  }
+  const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.0gezr.mongodb.net/?authMechanism=DEFAULT`;
+  let client: any;
+  console.log("before client create------------------------");
+  try {
+    console.log("TRY CREATE CLIENT---------------------------------");
+    client = new MongoClient(uri);
+    console.log("CLIENT", client);
+  } catch (e) {
+    console.log("CLIENT CREATE ERROR------------------", e);
   }
   try {
     console.log("---- CONNECT TO -----", uri);
