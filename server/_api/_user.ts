@@ -70,11 +70,11 @@ export function login(app: any) {
       },
       { collection: "Users" }
     );
-    const Users = mongoose.model("Users", userSchema, "Users");
+    const Usr = mongoose.model("Usr", userSchema, "Users");
     try {
       const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.0gezr.mongodb.net/CryptoRates?authMechanism=DEFAULT`;
       await mongoose.connect(uri);
-      const u = await Users.find({ name: req.body?.email });
+      const u = await Usr.find({ name: req.body?.email });
       if (u[0]) user = u[0];
     } catch (e: any) {
       return res.json({
@@ -100,7 +100,7 @@ export function login(app: any) {
       );
 
       // save token to db
-      await Users.findOneAndUpdate({ name: req.body?.email }, { token });
+      await Usr.findOneAndUpdate({ name: req.body?.email }, { token });
       // await db
       //   .collection("Users")
       //   .updateOne({ name: req.body?.email }, { $set: { token } });
