@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import EmailValidator from "~/logic/Form/validator/EmailValidator";
 import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
 import authMiddleware from "~/server/_api/middleware/auth.js";
+import mongoose from "mongoose";
 const emailValid = new EmailValidator("email");
 const passValid = new PasswordValidator("password");
 
@@ -61,9 +62,20 @@ export function login(app: any) {
 
     // find an user by email and password
     let user;
-    const db = await loadDb();
+    const userSchema = new mongoose.Schema(
+      {
+        name: String,
+        password: String,
+        token: String,
+      },
+      { collection: "Users" }
+    );
+    const Users = mongoose.model("Users", userSchema, "Users");
     try {
-      user = await db.collection("Users").findOne({ name: req.body?.email });
+      const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.0gezr.mongodb.net/CryptoRates?authMechanism=DEFAULT`;
+      await mongoose.connect(uri);
+      const u = await Users.find({ name: req.body?.email });
+      if (u[0]) user = u[0];
     } catch (e: any) {
       return res.json({
         success: false,
@@ -88,9 +100,10 @@ export function login(app: any) {
       );
 
       // save token to db
-      await db
-        .collection("Users")
-        .updateOne({ name: req.body?.email }, { $set: { token } });
+      await Users.findOneAndUpdate({ name: req.body?.email }, { token });
+      // await db
+      //   .collection("Users")
+      //   .updateOne({ name: req.body?.email }, { $set: { token } });
 
       res.json({
         success: true,
