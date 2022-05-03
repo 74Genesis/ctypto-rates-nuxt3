@@ -3,10 +3,16 @@
     "strictFunctionTypes": false,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
-    "target": "es2015",
-    "module": "commonjs"
+    "module": "CommonJS",
+    "target": "esnext"
   },
-  "include": [
-    "_api/**/*.ts"
-  ]
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "baseUrl": ".",
+  "paths": {
+    "~/*": ["/*"]
+  }
 }

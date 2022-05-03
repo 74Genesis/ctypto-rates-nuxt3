@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+import MongoClient from "mongodb";
 
 let db;
 
@@ -22,4 +22,4 @@ const loadDB = async () => {
   return db;
 };
 
-module.exports = loadDB;
+export default loadDB;

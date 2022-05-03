@@ -1,5 +1,5 @@
-import authMiddleware from "./middleware/auth";
-import $fetch from "ohmyfetch";
+import authMiddleware from "./middleware/auth.js";
+import { $fetch } from "ohmyfetch";
 
 // currency info
 function currencyByName(app) {

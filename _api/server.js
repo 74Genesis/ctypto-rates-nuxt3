@@ -1,10 +1,5 @@
-const moduleAlias = require("module-alias");
-moduleAlias.addAlias("~", __dirname + "../");
-
 import express from "express";
 import cors from "cors";
-import EmailValidator from "~/logic/Form/validator/EmailValidator";
-import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
 
 const corsOptions = {
   origin: "*",
@@ -22,13 +17,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const emailValid = new EmailValidator("email");
-const passValid = new PasswordValidator("password");
-
 app.get("/api/some", function (req, res) {
   res.send({
     some: "bar2",
-    mail: emailValid,
+    mail: 123,
   });
 });
 app.get("/some", function (req, res) {
@@ -38,13 +30,13 @@ app.get("/some", function (req, res) {
 });
 
 // User api
-const userApi = require("./_user");
+import userApi from "./_user.js";
 userApi.signup(app);
 userApi.login(app);
 userApi.userInfo(app);
 
 // Currencies api
-import currencyApi from "./_currency";
+import currencyApi from "./_currency.js";
 currencyApi.currencyByName(app);
 currencyApi.currencyHistory(app);
 
@@ -54,4 +46,4 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-module.exports = app;
+export default app;

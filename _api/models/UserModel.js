@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 mongoose.Promise = global.Promise;
@@ -12,5 +12,5 @@ const userSchema = new mongoose.Schema(
   { collection: "Users" }
 );
 
-module.exports =
-  mongoose.models.Customer || mongoose.model("User", userSchema, "Users");
+export default mongoose.models.Customer ||
+  mongoose.model("User", userSchema, "Users");

@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.ts --ignore-path .eslintignore .",
     "server": "ts-node _api/server.js"
   },
+  "type": "module",
   "_moduleAliases": {
     "~": "."
   },

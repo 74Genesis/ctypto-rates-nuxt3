@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongodb";
-import loadDb from "../db/db";
+import loadDb from "../db/db.js";
 
 /*
  * User auth middleware
  * checks if user has a valid token
  * */
-module.exports = async (req, res, next) => {
+export default async (req, res, next) => {
   const auth = req?.headers?.authorization;
   let token;
   let user;

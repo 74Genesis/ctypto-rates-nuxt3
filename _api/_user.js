@@ -1,16 +1,13 @@
 import dotenv from "dotenv";
-const path = require("path");
+import path from "path";
+const __dirname = path.resolve();
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 import authMiddleware from "./middleware/auth.js";
 import bcrypt from "bcrypt";
-import loadDb from "./db/db";
+import loadDb from "./db/db.js";
 import jwt from "jsonwebtoken";
-import EmailValidator from "../logic/Form/validator/EmailValidator.ts";
-import PasswordValidator from "../logic/Form/validator/PasswordValidator.ts";
 import mongoose from "mongoose";
-import UserModel from "./models/UserModel";
-const emailValid = new EmailValidator("email");
-const passValid = new PasswordValidator("password");
+import UserModel from "./models/UserModel.js";
 
 /*
  * Fast written simple auth api
@@ -20,15 +17,6 @@ const passValid = new PasswordValidator("password");
 function signup(app) {
   app.post("/api/signup", async (req, res, next) => {
     // return error if fields not valid
-    if (
-      !emailValid.isValid(req.body?.email) ||
-      !passValid.isValid(req.body?.password)
-    ) {
-      return res.json({
-        success: false,
-        error: "form is not valid",
-      });
-    }
 
     const db = await loadDb();
 
@@ -54,15 +42,15 @@ function signup(app) {
 function login(app) {
   app.post("/api/login", async (req, res, next) => {
     // validate email and password
-    if (
-      !emailValid.isValid(req.body?.email) ||
-      !passValid.isValid(req.body?.password)
-    ) {
-      return res.json({
-        success: false,
-        error: "form is not valid",
-      });
-    }
+    // if (
+    //   !emailValid.isValid(req.body?.email) ||
+    //   !passValid.isValid(req.body?.password)
+    // ) {
+    //   return res.json({
+    //     success: false,
+    //     error: "form is not valid",
+    //   });
+    // }
 
     // find an user by email and password
     let user;
@@ -136,4 +124,4 @@ function userInfo(app) {
   });
 }
 
-module.exports = { signup, login, userInfo };
+export default { signup, login, userInfo };
