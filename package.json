@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs & ts-node _api/server.js",
+    "start": "node .output/server/index.mjs",
     "lint": "eslint --ext .js,.ts --ignore-path .eslintignore .",
     "server": "ts-node _api/server.js"
   },
