@@ -44,7 +44,7 @@ import currencyApi from "./_currency";
 currencyApi.currencyByName(app);
 currencyApi.currencyHistory(app);
 
-const port = 2000;
+const port = 3000;
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
