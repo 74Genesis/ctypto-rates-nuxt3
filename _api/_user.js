@@ -1,10 +1,14 @@
+import dotenv from "dotenv";
+const path = require("path");
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
+import authMiddleware from "./middleware/auth.js";
 import bcrypt from "bcrypt";
-import loadDb from "~/server/_api/db/db";
+import loadDb from "./db/db";
 import jwt from "jsonwebtoken";
-import EmailValidator from "~/logic/Form/validator/EmailValidator";
-import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
-import authMiddleware from "~/server/_api/middleware/auth.js";
+import EmailValidator from "../logic/Form/validator/EmailValidator.ts";
+import PasswordValidator from "../logic/Form/validator/PasswordValidator.ts";
 import mongoose from "mongoose";
+import UserModel from "./models/UserModel";
 const emailValid = new EmailValidator("email");
 const passValid = new PasswordValidator("password");
 
@@ -13,8 +17,8 @@ const passValid = new PasswordValidator("password");
  * */
 
 // Signup
-export function signup(app: any) {
-  app.post("/api/signup", async (req: any, res: any, next: any) => {
+function signup(app) {
+  app.post("/api/signup", async (req, res, next) => {
     // return error if fields not valid
     if (
       !emailValid.isValid(req.body?.email) ||
@@ -47,8 +51,8 @@ export function signup(app: any) {
 }
 
 // Login
-export function login(app: any) {
-  app.post("/api/login", async (req: any, res: any, next: any) => {
+function login(app) {
+  app.post("/api/login", async (req, res, next) => {
     // validate email and password
     if (
       !emailValid.isValid(req.body?.email) ||
@@ -62,21 +66,14 @@ export function login(app: any) {
 
     // find an user by email and password
     let user;
-    const userSchema = new mongoose.Schema(
-      {
-        name: String,
-        password: String,
-        token: String,
-      },
-      { collection: "Users" }
-    );
-    const Usr = mongoose.model("Usr", userSchema, "Users");
     try {
+      console.log("MONGO ----", process.env.MONGO_URL);
       const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.0gezr.mongodb.net/CryptoRates?authMechanism=DEFAULT`;
       await mongoose.connect(uri);
-      const u = await Usr.find({ name: req.body?.email });
+      const u = await UserModel.find({ name: req.body?.email });
       if (u[0]) user = u[0];
-    } catch (e: any) {
+    } catch (e) {
+      console.log(e);
       return res.json({
         success: false,
         error: e.message,
@@ -100,7 +97,7 @@ export function login(app: any) {
       );
 
       // save token to db
-      await Usr.findOneAndUpdate({ name: req.body?.email }, { token });
+      await UserModel.findOneAndUpdate({ name: req.body?.email }, { token });
       // await db
       //   .collection("Users")
       //   .updateOne({ name: req.body?.email }, { $set: { token } });
@@ -120,8 +117,8 @@ export function login(app: any) {
 }
 
 // Get user info
-export function userInfo(app: any) {
-  app.get("/api/user", authMiddleware, function (req: any, res: any) {
+function userInfo(app) {
+  app.get("/api/user", authMiddleware, function (req, res) {
     if (req.user) {
       const rUser = Object.assign({}, req.user);
       delete rUser.password;
@@ -138,4 +135,5 @@ export function userInfo(app: any) {
     });
   });
 }
-export default defineEventHandler(() => undefined);
+
+module.exports = { signup, login, userInfo };

@@ -3,6 +3,12 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "strictFunctionTypes": false,
-    "strictPropertyInitialization": false
-  }
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "target": "es2015",
+    "module": "commonjs"
+  },
+  "include": [
+    "_api/**/*.ts"
+  ]
 }

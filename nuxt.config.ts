@@ -27,6 +27,10 @@ export default defineNuxtConfig({
       },
     },
   },
+  serverMiddleware: [
+    // { path: "/api", handler: "~/bin/middleware/server.ts" },
+    // { path: "/api/**", handler: "~/bin/middleware/server.ts" },
+  ],
   typescript: {
     strict: true,
   },

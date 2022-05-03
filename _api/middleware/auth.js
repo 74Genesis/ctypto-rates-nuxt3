@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongodb";
-import loadDb from "~/server/_api/db/db";
+import loadDb from "../db/db";
 
 /*
  * User auth middleware
  * checks if user has a valid token
  * */
-export default async (req: any, res: any, next: any) => {
+module.exports = async (req, res, next) => {
   const auth = req?.headers?.authorization;
   let token;
   let user;
@@ -25,7 +25,7 @@ export default async (req: any, res: any, next: any) => {
           .collection("Users")
           .findOne({ _id: new ObjectId(payload?.id) });
       }
-    } catch (e: any) {
+    } catch (e) {
       console.log(e.message);
     }
   }

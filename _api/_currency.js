@@ -1,35 +1,32 @@
-import authMiddleware from "~/server/_api/middleware/auth";
+import authMiddleware from "./middleware/auth";
+import $fetch from "ohmyfetch";
 
 // currency info
-export function currencyByName(app: any) {
-  app.get(
-    "/api/currency/:name",
-    authMiddleware,
-    async function (req: any, res: any) {
-      let r: any;
-      try {
-        r = await $fetch(`https://api.coincap.io/v2/assets/${req.params.name}`);
-        if (r && r.data) {
-          return res.json({
-            data: r.data,
-          });
-        }
-      } catch (e: any) {
-        console.log(e);
+function currencyByName(app) {
+  app.get("/api/currency/:name", authMiddleware, async function (req, res) {
+    let r;
+    try {
+      r = await $fetch(`https://api.coincap.io/v2/assets/${req.params.name}`);
+      if (r && r.data) {
+        return res.json({
+          data: r.data,
+        });
       }
+    } catch (e) {
+      console.log(e);
     }
-  );
+  });
 }
 
 // currency history
-export function currencyHistory(app: any) {
+function currencyHistory(app) {
   app.get(
     "/api/currency/:name/history",
     authMiddleware,
-    async function (req: any, res: any) {
-      let r: any;
+    async function (req, res) {
+      let r;
       try {
-        const opts: Record<string, any> = { params: {} };
+        const opts = { params: {} };
 
         if (req.query.interval) opts.params.interval = req.query.interval;
         if (req.query.start) opts.params.start = req.query.start;
@@ -45,7 +42,7 @@ export function currencyHistory(app: any) {
             data: r.data,
           });
         }
-      } catch (e: any) {
+      } catch (e) {
         console.log(e);
       }
       return res.json({
@@ -54,3 +51,5 @@ export function currencyHistory(app: any) {
     }
   );
 }
+
+export default { currencyHistory, currencyByName };
