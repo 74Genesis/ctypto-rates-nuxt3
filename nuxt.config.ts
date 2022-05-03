@@ -28,8 +28,8 @@ export default defineNuxtConfig({
     },
   },
   serverMiddleware: [
-    // { path: "/api", handler: "~/bin/middleware/server.js" },
-    // { path: "/api/**", handler: "~/bin/middleware/server.js" },
+    // { path: "/api", handler: "~/_api/server.js" },
+    // { path: "/api/**", handler: "~/_api/server.js" },
   ],
   typescript: {
     strict: true,

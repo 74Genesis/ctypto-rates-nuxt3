@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "_api/server.js",
-      "use": "@now/node"
+      "use": "@vercel/node"
     }
   ]
 }
