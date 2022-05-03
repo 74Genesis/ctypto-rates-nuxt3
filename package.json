@@ -3,9 +3,9 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs & ts-node _api/server.ts",
+    "start": "node .output/server/index.mjs & ts-node _api/server.js",
     "lint": "eslint --ext .js,.ts --ignore-path .eslintignore .",
-    "server": "ts-node _api/server.ts"
+    "server": "ts-node _api/server.js"
   },
   "dependencies": {
     "@heroicons/vue": "^1.0.6",

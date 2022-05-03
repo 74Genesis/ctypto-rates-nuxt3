@@ -9,9 +9,9 @@ const corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-const app: any = express();
+const app = express();
 
-app.use((req: any, res: any, next: any) => {
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Private-Network", "true");
   next();
 });
@@ -19,15 +19,15 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const emailValid: any = new EmailValidator("email");
-const passValid: any = new PasswordValidator("password");
+const emailValid = new EmailValidator("email");
+const passValid = new PasswordValidator("password");
 
-app.get("/api/some", function (req: any, res: any) {
+app.get("/api/some", function (req, res) {
   res.send({
     some: "bar2",
   });
 });
-app.get("/some", function (req: any, res: any) {
+app.get("/some", function (req, res) {
   res.send({
     some: "bar3",
   });
