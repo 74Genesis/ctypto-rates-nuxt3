@@ -55,6 +55,7 @@
     "vite-plugin-top-level-await": "^0.0.4",
     "vite-svg-loader": "^3.2.0",
     "vitest": "^0.9.3",
-    "vue-cli-plugin-pinia": "~0.1.2"
+    "vue-cli-plugin-pinia": "~0.1.2",
+    "dotenv": "^16.0.0"
   }
 }
