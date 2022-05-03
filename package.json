@@ -1,5 +1,5 @@
 {
-  "engines": { "node": "16.x" },
+  "engines": { "node": "14.x" },
   "private": true,
   "scripts": {
     "dev": "nuxi dev",
