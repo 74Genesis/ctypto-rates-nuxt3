@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-// import EmailValidator from "../logic/Form/validator/EmailValidator";
-// import PasswordValidator from "../logic/Form/validator/PasswordValidator";
+import EmailValidator from "../logic/Form/validator/EmailValidator";
+import PasswordValidator from "../logic/Form/validator/PasswordValidator";
 
 const corsOptions = {
   origin: "*",
@@ -19,12 +19,13 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// const emailValid = new EmailValidator("email");
-// const passValid = new PasswordValidator("password");
+const emailValid = new EmailValidator("email");
+const passValid = new PasswordValidator("password");
 
 app.get("/api/some", function (req, res) {
   res.send({
     some: "bar2",
+    mail: emailValid,
   });
 });
 app.get("/some", function (req, res) {
@@ -33,16 +34,16 @@ app.get("/some", function (req, res) {
   });
 });
 
-// // User api
-// const userApi = require("./_user");
-// userApi.signup(app);
-// userApi.login(app);
-// userApi.userInfo(app);
-//
-// // Currencies api
-// import currencyApi from "./_currency";
-// currencyApi.currencyByName(app);
-// currencyApi.currencyHistory(app);
+// User api
+const userApi = require("./_user");
+userApi.signup(app);
+userApi.login(app);
+userApi.userInfo(app);
+
+// Currencies api
+import currencyApi from "./_currency";
+currencyApi.currencyByName(app);
+currencyApi.currencyHistory(app);
 
 const port = 3030;
 
