@@ -44,7 +44,7 @@ app.get("/some", function (req, res) {
 // currencyApi.currencyByName(app);
 // currencyApi.currencyHistory(app);
 
-const port = 3000;
+const port = 3030;
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
