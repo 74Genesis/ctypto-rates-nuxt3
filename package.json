@@ -1,5 +1,7 @@
 {
-  "engines": { "node": "14.x" },
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "scripts": {
     "dev": "nuxi dev",
@@ -19,6 +21,7 @@
     "frappe-charts": "^1.6.2",
     "h3": "^0.7.2",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "mongodb": "^4.2.0",
     "mongoose": "^6.3.1",
     "pinia": "^2.0.13",
@@ -39,6 +42,7 @@
     "@typescript-eslint/parser": "^5.18.0",
     "@vue/eslint-config-standard": "^6.1.0",
     "autoprefixer": "^10.4.4",
+    "dotenv": "^16.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^3.2.0",
@@ -56,7 +60,6 @@
     "vite-plugin-top-level-await": "^0.0.4",
     "vite-svg-loader": "^3.2.0",
     "vitest": "^0.9.3",
-    "vue-cli-plugin-pinia": "~0.1.2",
-    "dotenv": "^16.0.0"
+    "vue-cli-plugin-pinia": "~0.1.2"
   }
 }

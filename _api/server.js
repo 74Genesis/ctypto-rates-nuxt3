@@ -1,7 +1,10 @@
+const moduleAlias = require("module-alias");
+moduleAlias.addAlias("~", __dirname + "../");
+
 import express from "express";
 import cors from "cors";
-import EmailValidator from "../logic/Form/validator/EmailValidator";
-import PasswordValidator from "../logic/Form/validator/PasswordValidator";
+import EmailValidator from "~/logic/Form/validator/EmailValidator";
+import PasswordValidator from "~/logic/Form/validator/PasswordValidator";
 
 const corsOptions = {
   origin: "*",
