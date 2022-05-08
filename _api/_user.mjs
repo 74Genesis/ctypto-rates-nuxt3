@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 import path from "path";
 const __dirname = path.resolve();
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
-import authMiddleware from "./middleware/auth.js";
+dotenv.config({ path: path.resolve(__dirname, ".env") });
+import authMiddleware from "./middleware/auth.mjs";
 import bcrypt from "bcrypt";
-import loadDb from "./db/db.js";
+import loadDb from "./db/db.mjs";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import UserModel from "./models/UserModel.js";
+import UserModel from "./models/UserModel.mjs";
 
 /*
  * Fast written simple auth api
@@ -41,21 +41,11 @@ function signup(app) {
 // Login
 function login(app) {
   app.post("/api/login", async (req, res, next) => {
-    // validate email and password
-    // if (
-    //   !emailValid.isValid(req.body?.email) ||
-    //   !passValid.isValid(req.body?.password)
-    // ) {
-    //   return res.json({
-    //     success: false,
-    //     error: "form is not valid",
-    //   });
-    // }
-
     // find an user by email and password
     let user;
     try {
       console.log("MONGO ----", process.env.MONGO_URL);
+      console.log("MONGO ----", path.resolve(__dirname, ".env"));
       const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.0gezr.mongodb.net/CryptoRates?authMechanism=DEFAULT`;
       await mongoose.connect(uri);
       const u = await UserModel.find({ name: req.body?.email });

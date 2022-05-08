@@ -2,17 +2,7 @@
   "compilerOptions": {
     "strictFunctionTypes": false,
     "strictPropertyInitialization": false,
-    "esModuleInterop": true,
-    "module": "CommonJS",
     "target": "esnext"
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
-  "baseUrl": ".",
-  "paths": {
-    "~/*": ["/*"]
-  }
+  "baseUrl": "."
 }

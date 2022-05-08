@@ -1,4 +1,4 @@
-import authMiddleware from "./middleware/auth.js";
+import authMiddleware from "./middleware/auth.mjs";
 import { $fetch } from "ohmyfetch";
 
 // currency info

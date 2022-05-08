@@ -50,5 +50,5 @@ export const useFetchAuth = async (
   const options = Object.assign(opts || {}, { headers });
 
   const config = useRuntimeConfig();
-  return $fetch(config.baseUrl + url, options);
+  return $fetch(config.apiUrl + url, options);
 };

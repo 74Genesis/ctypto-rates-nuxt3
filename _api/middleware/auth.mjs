@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { ObjectId } from "mongodb";
-import loadDb from "../db/db.js";
+import loadDb from "../db/db.mjs";
 
 /*
  * User auth middleware

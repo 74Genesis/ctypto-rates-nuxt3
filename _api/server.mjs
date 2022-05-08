@@ -3,14 +3,16 @@ import cors from "cors";
 
 const corsOptions = {
   origin: "*",
-  headers: "Origin, X-Requested-With, Content-Type, Accept",
+  headers: "*",
+  methods: "*",
+  // headers: "Origin, X-Requested-With, Content-Type, Accept",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 const app = express();
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Private-Network", "true");
+  // res.setHeader("Access-Control-Allow-Private-Network", "true");
   next();
 });
 app.use(cors(corsOptions));
@@ -30,13 +32,13 @@ app.get("/some", function (req, res) {
 });
 
 // User api
-import userApi from "./_user.js";
+import userApi from "./_user.mjs";
 userApi.signup(app);
 userApi.login(app);
 userApi.userInfo(app);
 
 // Currencies api
-import currencyApi from "./_currency.js";
+import currencyApi from "./_currency.mjs";
 currencyApi.currencyByName(app);
 currencyApi.currencyHistory(app);
 

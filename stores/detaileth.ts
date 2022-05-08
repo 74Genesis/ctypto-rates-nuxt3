@@ -17,7 +17,7 @@ export const useDetailEth = defineStore("useDetailEth", {
     // Get current currency info
     async loadCurrency() {
       try {
-        const r: any = await useFetchAuth("/api/currency/ethereum");
+        const r: any = await useFetchAuth("/currency/ethereum");
         this.currency = r.data;
       } catch (e) {
         console.log(e);
@@ -32,7 +32,7 @@ export const useDetailEth = defineStore("useDetailEth", {
       const start = date.getTime();
 
       try {
-        const r: any = await useFetchAuth("/api/currency/ethereum/history", {
+        const r: any = await useFetchAuth("/currency/ethereum/history", {
           params: { interval: "d1", start, end },
         });
 

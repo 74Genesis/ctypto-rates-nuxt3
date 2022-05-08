@@ -1,23 +1,17 @@
 {
-  "engines": {
-    "node": "14.x"
-  },
   "private": true,
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "lint": "eslint --ext .js,.ts --ignore-path .eslintignore .",
-    "server": "ts-node _api/server.js"
-  },
-  "type": "module",
-  "_moduleAliases": {
-    "~": "."
+    "server": "node _api/server.mjs"
   },
   "dependencies": {
     "@heroicons/vue": "^1.0.6",
     "@mdi/js": "^6.6.96",
     "@pinia/nuxt": "^0.1.8",
+    "@turf/turf": "^6.5.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

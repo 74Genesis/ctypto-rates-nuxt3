@@ -17,7 +17,7 @@ export const useDetailBtc = defineStore("useDetailBtc", {
     // Get current currency info
     async loadCurrency() {
       try {
-        const r: any = await useFetchAuth("/api/currency/bitcoin");
+        const r: any = await useFetchAuth("/currency/bitcoin");
         this.currency = r.data;
       } catch (e) {
         console.log(e);
@@ -32,7 +32,7 @@ export const useDetailBtc = defineStore("useDetailBtc", {
       const start = date.getTime();
 
       try {
-        const r: any = await useFetchAuth("/api/currency/bitcoin/history", {
+        const r: any = await useFetchAuth("/currency/bitcoin/history", {
           params: { interval: "d1", start, end },
         });
         if (Array.isArray(r.data)) this.history = r.data;
